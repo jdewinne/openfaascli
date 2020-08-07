@@ -1,0 +1,16 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:18080
+functions:
+  stscli:
+    lang: dockerfile
+    handler: ./stscli
+    image: jdewinne/stscli:4.0.1-5
+    environment:
+      fprocess: /usr/bin/run.sh -i k8s stackpack list
+      sts_username: admin
+      sts_password: sts-password-k8s
+    secrets:
+      - sts-password-k8s
+

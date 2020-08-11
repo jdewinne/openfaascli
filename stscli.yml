@@ -1,16 +1,28 @@
 version: 1.0
 provider:
   name: openfaas
-  gateway: http://127.0.0.1:18080
+  gateway: ${OPENFAAS_GATEWAY:-http://127.0.0.1:18080}
 functions:
-  stscli:
+  list-stackpacks:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-5
+    image: jdewinne/stscli:4.0.1-10
     environment:
-      fprocess: /usr/bin/run.sh -i k8s stackpack list
-      sts_username: admin
-      sts_password: sts-password-k8s
+      fprocess: /usr/bin/run.sh stackpack list
+    environment_file:
+      - ./stscli/cli-default.yml
+      - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
     secrets:
-      - sts-password-k8s
-
+      - ${STS_PASSWORD:-sts-password}
+  delete-all-data:
+    lang: dockerfile
+    handler: ./stscli
+    image: jdewinne/stscli:4.0.1-10
+    environment:
+      fprocess: /usr/bin/run.sh graph delete --all
+    environment_file:
+      - ./stscli/cli-default.yml
+      - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
+    secrets:
+      - ${STS_PASSWORD:-sts-password}
+      

@@ -1,0 +1,7 @@
+environment:
+  sts_username: admin
+  sts_password: sts-password
+  sts_base_api: http://k8s-sts:8080
+  sts_receiver_api: http://k8s-sts:8080
+  sts_admin_api: http://k8s-sts:8080/admin
+  sts_api_key: f3ec7af4027370b18cfe96c140a8f6b1

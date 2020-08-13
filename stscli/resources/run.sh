@@ -3,6 +3,7 @@
 # Create the cli /conf.d/conf.yaml file
 sts_password_parsed=$(cat /var/openfaas/secrets/$sts_password)
 
+rm -rf /conf.d
 mkdir /conf.d
 cat >/conf.d/conf.yaml <<EOL
 instances:
@@ -40,4 +41,12 @@ cli:
     verbose: false
 EOL
 
-python -m src.cli $@
+# if download link is specified (dl_download_link)
+if [ -n "${dl_download_link}" ]; then
+    echo "dl_download_link is defined: $dl_download_link"
+    http -d GET $dl_download_link -o download.zip
+    unzip -q -o download.zip
+    PYTHONPATH=/ sh $@
+else
+    python -m src.cli $@
+fi

@@ -1,3 +1,3 @@
 template
 build
-stscli/cli-override.yml
+stscli/*-override.yml

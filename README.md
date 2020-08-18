@@ -20,6 +20,8 @@
     1. `sts_api_key`: Define the API key (default: `f3ec7af4027370b18cfe96c140a8f6b1`)
 1. In case you want to change the default download zip from `dl-default.yml`, copy the file into `dl-domain-override.yml` and change what is needed. This is typically only relevant when loading the `msp`, `banking`, `telco`, ... scenario.
     1. `dl_download_link`: Contains the location where to find a zipped version of the scripts to run.
+1. In case you want to change the default demo-stackpack download link from `stackpack-default.yml`, copy the file into `stackpack-override.yml` and change what is needed. This is typically only relevant when making changes in the demo-stackpack.
+    1. `demo_stackpack_download_link`: Contains the location where to find the demo-stackpack.
 1. Deploy your function:
 
    `faas-cli deploy -f stscli.yml`
@@ -39,3 +41,7 @@
    or when you've changed the download link:
 
    `DL_OVERRIDE="./stscli/msp-override.yml" faas-cli deploy -f msp.yml`
+
+   or when you're working on the demo-stackpack:
+
+   `STACKPACK_OVERRIDE="./stscli/stackpack-override.yml faas-cli deploy -f demo.yml`

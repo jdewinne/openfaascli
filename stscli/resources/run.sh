@@ -41,12 +41,19 @@ cli:
     verbose: false
 EOL
 
+# if stackpack link is specified (demo_stackpack_download_link)
+if [ -n "${demo_stackpack_download_link}" ]; then
+    echo "demo_stackpack_download_link is defined: $demo_stackpack_download_link"
+    http -d GET $demo_stackpack_download_link -o demo-stackpack.sts
+    python -m src.cli $@ demo-stackpack.sts
+
 # if download link is specified (dl_download_link)
-if [ -n "${dl_download_link}" ]; then
+elif [ -n "${dl_download_link}" ]; then
     echo "dl_download_link is defined: $dl_download_link"
     http -d GET $dl_download_link -o download.zip
     unzip -q -o download.zip
     PYTHONPATH=/ sh $@
+    
 else
     python -m src.cli $@
 fi

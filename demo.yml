@@ -3,39 +3,38 @@ provider:
   name: openfaas
   gateway: ${OPENFAAS_GATEWAY:-http://127.0.0.1:18080}
 functions:
-  cli-delete-all-data:
+  stackpack-install-demo-stackpack:
     lang: dockerfile
     handler: ./stscli
     image: jdewinne/stscli:4.0.1-17
     environment:
-      fprocess: /usr/bin/run.sh graph delete --all
-      write_timeout: 60s
-      read_timeout: 60s
-      exec_timeout: 60s
+      fprocess: /usr/bin/run.sh stackpack install demo-stackpack -p password notinuse
     environment_file:
       - ./stscli/cli-default.yml
       - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
     secrets:
       - ${STS_PASSWORD:-sts-password}
-  cli-list-stackpacks:
+  stackpack-install-health-forecast:
     lang: dockerfile
     handler: ./stscli
     image: jdewinne/stscli:4.0.1-17
     environment:
-      fprocess: /usr/bin/run.sh stackpack list
+      fprocess: /usr/bin/run.sh stackpack install health-forecast
     environment_file:
       - ./stscli/cli-default.yml
       - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
     secrets:
       - ${STS_PASSWORD:-sts-password}
-  cli-list-topics:
+  stackpack-upload-demo-stackpack:
     lang: dockerfile
     handler: ./stscli
     image: jdewinne/stscli:4.0.1-17
     environment:
-      fprocess: /usr/bin/run.sh topic list
+      fprocess: /usr/bin/run.sh stackpack upload
     environment_file:
       - ./stscli/cli-default.yml
       - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
+      - ./stscli/stackpack-default.yml
+      - ${STACKPACK_OVERRIDE:-./stscli/stackpack-default.yml}
     secrets:
       - ${STS_PASSWORD:-sts-password}

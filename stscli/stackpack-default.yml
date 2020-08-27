@@ -1,2 +1,4 @@
 environment:
-  demo_stackpack_download_link: https://www.dropbox.com/s/qbngz6is2rpzauf/demo-stackpack-0.4.0-SNAPSHOT.sts?dl=1
+  demo_stackpack_download_link: https://artifactory.stackstate.io/artifactory/libs-release-local/com/stackstate/stackpack/demo-stackpack/0.4.1/demo-stackpack-0.4.1.sts
+  demo_stackpack_download_user: 
+  demo_stackpack_download_password: artifactory-password

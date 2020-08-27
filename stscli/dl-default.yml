@@ -1,2 +1,4 @@
 environment:
-  dl_download_link: https://www.dropbox.com/s/ez4ikuv9e0b0x2y/msp.zip?dl=1
+  dl_download_link: https://artifactory.stackstate.io/artifactory/libs-release-local/com/stackstate/stackpack/demo-stackpack/0.4.1/demo-stackpack-0.4.1-msp.zip
+  dl_download_user: 
+  dl_download_password: artifactory-password

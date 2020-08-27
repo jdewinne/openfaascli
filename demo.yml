@@ -6,7 +6,7 @@ functions:
   stackpack-install-demo-stackpack:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-17
+    image: jdewinne/stscli:4.0.1-20
     environment:
       fprocess: /usr/bin/run.sh stackpack install demo-stackpack -p password notinuse
     environment_file:
@@ -17,7 +17,7 @@ functions:
   stackpack-install-health-forecast:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-17
+    image: jdewinne/stscli:4.0.1-20
     environment:
       fprocess: /usr/bin/run.sh stackpack install health-forecast
     environment_file:
@@ -28,7 +28,7 @@ functions:
   stackpack-upload-demo-stackpack:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-17
+    image: jdewinne/stscli:4.0.1-20
     environment:
       fprocess: /usr/bin/run.sh stackpack upload
     environment_file:
@@ -38,3 +38,4 @@ functions:
       - ${STACKPACK_OVERRIDE:-./stscli/stackpack-default.yml}
     secrets:
       - ${STS_PASSWORD:-sts-password}
+      - ${ARTIFACTORY_PASSWORD:-artifactory-password}

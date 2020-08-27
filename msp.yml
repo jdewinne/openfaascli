@@ -6,7 +6,7 @@ functions:
   msp-cause-problem:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-17
+    image: jdewinne/stscli:4.0.1-20
     environment:
       fprocess: /usr/bin/run.sh cause_problem.sh
       write_timeout: 60s
@@ -19,10 +19,11 @@ functions:
       - ${DL_OVERRIDE:-./stscli/dl-default.yml}
     secrets:
       - ${STS_PASSWORD:-sts-password}
+      - ${ARTIFACTORY_PASSWORD:-artifactory-password}
   msp-fix-problem:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-17
+    image: jdewinne/stscli:4.0.1-20
     environment:
       fprocess: /usr/bin/run.sh fix_problem.sh
       write_timeout: 60s
@@ -35,10 +36,11 @@ functions:
       - ${DL_OVERRIDE:-./stscli/dl-default.yml}
     secrets:
       - ${STS_PASSWORD:-sts-password}
+      - ${ARTIFACTORY_PASSWORD:-artifactory-password}
   msp-load-topology:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-17
+    image: jdewinne/stscli:4.0.1-20
     environment:
       fprocess: /usr/bin/run.sh load_topology_msp.sh
       write_timeout: 300s
@@ -50,11 +52,12 @@ functions:
       - ./stscli/dl-default.yml
       - ${DL_OVERRIDE:-./stscli/dl-default.yml}
     secrets:
-      - ${STS_PASSWORD:-sts-password}      
+      - ${STS_PASSWORD:-sts-password}
+      - ${ARTIFACTORY_PASSWORD:-artifactory-password} 
   msp-send-metrics:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-17
+    image: jdewinne/stscli:4.0.1-20
     environment:
       fprocess: /usr/bin/run.sh send_metrics.sh
       write_timeout: 300s
@@ -67,3 +70,4 @@ functions:
       - ${DL_OVERRIDE:-./stscli/dl-default.yml}
     secrets:
       - ${STS_PASSWORD:-sts-password}
+      - ${ARTIFACTORY_PASSWORD:-artifactory-password}

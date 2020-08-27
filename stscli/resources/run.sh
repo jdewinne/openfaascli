@@ -3,6 +3,16 @@
 # Create the cli /conf.d/conf.yaml file
 sts_password_parsed=$(cat /var/openfaas/secrets/$sts_password)
 
+# Fetch the password to download the demo stackpack
+if [ -n "${demo_stackpack_download_password}" ]; then
+    demo_stackpack_download_password_parsed=$(cat /var/openfaas/secrets/$demo_stackpack_download_password)
+fi
+
+# Fetch the password to download the domain scripts
+if [ -n "${dl_download_password}" ]; then
+    dl_download_password_parsed=$(cat /var/openfaas/secrets/$dl_download_password)
+fi
+
 rm -rf /conf.d
 mkdir /conf.d
 cat >/conf.d/conf.yaml <<EOL
@@ -44,13 +54,13 @@ EOL
 # if stackpack link is specified (demo_stackpack_download_link)
 if [ -n "${demo_stackpack_download_link}" ]; then
     echo "demo_stackpack_download_link is defined: $demo_stackpack_download_link"
-    http -d GET $demo_stackpack_download_link -o demo-stackpack.sts
+    http -a $demo_stackpack_download_user:$demo_stackpack_download_password_parsed -d GET $demo_stackpack_download_link -o demo-stackpack.sts
     python -m src.cli $@ demo-stackpack.sts
 
 # if download link is specified (dl_download_link)
 elif [ -n "${dl_download_link}" ]; then
     echo "dl_download_link is defined: $dl_download_link"
-    http -d GET $dl_download_link -o download.zip
+    http -a $dl_download_user:$dl_download_password_parsed -d GET $dl_download_link -o download.zip
     unzip -q -o download.zip
     PYTHONPATH=/ sh $@
     

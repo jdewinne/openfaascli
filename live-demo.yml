@@ -3,18 +3,16 @@ provider:
   name: openfaas
   gateway: ${OPENFAAS_GATEWAY:-http://127.0.0.1:18080}
 functions:
-  stackpack-install-demo-stackpack:
+  stackpack-install-live-demo-stackpack:
     lang: dockerfile
     handler: ./stscli
     image: jdewinne/stscli:4.0.1-22
-    environment:
-      fprocess: /usr/bin/run.sh stackpack install demo-stackpack -p password notinuse
     environment_file:
       - ./stscli/cli-default.yml
       - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
     secrets:
       - ${STS_PASSWORD:-sts-password}
-  stackpack-upload-demo-stackpack:
+  stackpack-upload-live-demo-stackpack:
     lang: dockerfile
     handler: ./stscli
     image: jdewinne/stscli:4.0.1-22

@@ -6,7 +6,7 @@ functions:
   msp-cause-problem:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-20
+    image: jdewinne/stscli:4.0.1-22
     environment:
       fprocess: /usr/bin/run.sh cause_problem.sh
       write_timeout: 60s
@@ -23,7 +23,7 @@ functions:
   msp-fix-problem:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-20
+    image: jdewinne/stscli:4.0.1-22
     environment:
       fprocess: /usr/bin/run.sh fix_problem.sh
       write_timeout: 60s
@@ -40,7 +40,7 @@ functions:
   msp-load-topology:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-20
+    image: jdewinne/stscli:4.0.1-22
     environment:
       fprocess: /usr/bin/run.sh load_topology_msp.sh
       write_timeout: 300s
@@ -57,7 +57,7 @@ functions:
   msp-send-metrics:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-20
+    image: jdewinne/stscli:4.0.1-22
     environment:
       fprocess: /usr/bin/run.sh send_metrics.sh
       write_timeout: 300s

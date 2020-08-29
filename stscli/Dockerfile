@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
 ADD resources/run.sh /usr/bin/run.sh
-ENV fprocess="xargs python -m src.cli"
+ENV fprocess="xargs /usr/bin/run.sh"
 # Set to true to see request in function logs
 ENV write_debug="false"
 

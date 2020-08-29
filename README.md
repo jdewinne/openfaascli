@@ -22,7 +22,10 @@
     1. `dl_download_link`: Contains the location where to find a zipped version of the scripts to run.
     1. `dl_download_user`: The username to be used for basic auth.
     1. `dl_download_password`: The name of the k8s secret that contains the password.
-1. To make use of the demo-stackpack in `stackpack-default.yml`, copy the file into `stackpack-override.yml` and override the `demo_stackpack_download_user`. Also create a [secret](https://docs.openfaas.com/reference/secrets/#define-a-secret-in-kubernetes-advanced) into your k8s cluster. Use the pattern `artifactory-password` for the secret name, unless you want to change that. If you change it, you'll have to set `ARTIFACTORY_PASSWORD` when deploying.
+1. StackPacks:
+    1. To make use of a stackpack in `stackpack-default.yml`, copy the file into `stackpack-override.yml` and override the `stackpack_download_user`. 
+    1. Also create a [secret](https://docs.openfaas.com/reference/secrets/#define-a-secret-in-kubernetes-advanced) into your k8s cluster. Use the pattern `artifactory-password` for the secret name, unless you want to change that. If you change it, you'll have to set `ARTIFACTORY_PASSWORD` when deploying.
+    1. If you want to make use of a different stackpack, change `stackpack_download_link`. Default is the `demo-stackpack`.
 1. Deploy your function:
 
    `faas-cli deploy -f stscli.yml`
@@ -43,9 +46,9 @@
 
    `DL_OVERRIDE="./stscli/msp-override.yml" faas-cli deploy -f msp.yml`
 
-   or when you're working on the demo-stackpack:
+   or when you're working on a stackpack:
 
-   `STACKPACK_OVERRIDE="./stscli/stackpack-override.yml" faas-cli deploy -f demo.yml`
+   `STACKPACK_OVERRIDE="./stscli/stackpack-demo-override.yml" faas-cli deploy -f demo.yml`
 1. Items that can be overriden:
     1. `OPENFAAS_GATEWAY`: The openfaas gateway endpoint (default: `http://127.0.0.1:18080`).
     1. `CLI_OVERRIDE`: Override any value from `./stscli/cli-default.yml`.
@@ -53,3 +56,6 @@
     1. `STACKPACK_OVERRIDE`: Override any value from `./stscli/stackpack-default.yml`.
     1. `STS_PASSWORD`: The k8s secret name that will need to be mapped onto `/var/openfaas/secrets/` (default: `sts-password`).
     1. `ARTIFACTORY_PASSWORD`: The k8s secret name that will need to be mapped onto `/var/openfaas/secrets/` (default: `artifactory-password`).
+1. THhe `live-demo` stackpack:
+    1. Deploy via `CLI_OVERRIDE="./stscli/cli-override.yml" STACKPACK_OVERRIDE="./stscli/stackpack-live-demo-override.yml" faas-cli deploy -f live-demo.yml`.
+    1. The function `stackpack-install-live-demo-stackpack` requires in the request body `stackpack install live-demo -p receiverUrl <your-stackstate-instance-endpoint>`. With `your-stackstate-instance-endpoint` for example `http://abcdefghij.ngrok.io` when exposing your local instance using ngrok.

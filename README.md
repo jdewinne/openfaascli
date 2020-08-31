@@ -36,7 +36,7 @@
 
    or when you're using a different OpenFaas gateway:
 
-   `OPENFAAS_GATEWAY="http://something:someport" faas-cli deploy -f stscli.yml`
+   `faas-cli deploy -f stscli.yml -g "http://something:someport"`
 
    or when you've changed the default name for the `sts-password` secret:
 
@@ -50,7 +50,6 @@
 
    `STACKPACK_OVERRIDE="./stscli/stackpack-demo-override.yml" faas-cli deploy -f demo.yml`
 1. Items that can be overriden:
-    1. `OPENFAAS_GATEWAY`: The openfaas gateway endpoint (default: `http://127.0.0.1:18080`).
     1. `CLI_OVERRIDE`: Override any value from `./stscli/cli-default.yml`.
     1. `DL_OVERRIDE`: Override any value from `./stscli/dl-default.yml`.
     1. `STACKPACK_OVERRIDE`: Override any value from `./stscli/stackpack-default.yml`.

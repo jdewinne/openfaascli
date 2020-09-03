@@ -34,8 +34,8 @@ functions:
     environment:
       sts_nginxtopo_location: /etc/stackstate-agent/topo/nginx.conf
       sts_nginxtopo_name: nginx
-      sts_nginxtopo_scm: https://github.com/jdewinne/stackstate-nginx-check/blob/main/nginx/tests/data/complex/
-      sts_nginxtopo_download: https://github.com/jdewinne/stackstate-nginx-check/releases/download/v1.0.0/complex.zip
+      sts_nginxtopo_scm: https://github.com/jdewinne/stackstate-nginx-check/blob/main/nginx/tests/data/demo/
+      sts_nginxtopo_download: https://github.com/jdewinne/stackstate-nginx-check/releases/download/v1.0.0/demo.zip
       write_timeout: 20s
       read_timeout: 20s
       exec_timeout: 20s

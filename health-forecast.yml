@@ -4,7 +4,6 @@ provider:
 functions:
   stackpack-install-health-forecast:
     lang: dockerfile
-    handler: ./stscli
     image: jdewinne/stscli:4.0.1-22
     environment:
       fprocess: /usr/bin/run.sh stackpack install health-forecast

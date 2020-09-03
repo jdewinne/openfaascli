@@ -4,7 +4,6 @@ provider:
 functions:
   stackpack-install-demo-stackpack:
     lang: dockerfile
-    handler: ./stscli
     image: jdewinne/stscli:4.0.1-22
     environment:
       fprocess: /usr/bin/run.sh stackpack install demo-stackpack -p password notinuse
@@ -15,7 +14,6 @@ functions:
       - ${STS_PASSWORD:-sts-password}
   stackpack-upload-demo-stackpack:
     lang: dockerfile
-    handler: ./stscli
     image: jdewinne/stscli:4.0.1-22
     environment:
       fprocess: /usr/bin/run.sh stackpack upload

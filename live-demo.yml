@@ -4,7 +4,6 @@ provider:
 functions:
   stackpack-install-live-demo-stackpack:
     lang: dockerfile
-    handler: ./stscli
     image: jdewinne/stscli:4.0.1-22
     environment_file:
       - ./stscli/cli-default.yml
@@ -13,7 +12,6 @@ functions:
       - ${STS_PASSWORD:-sts-password}
   stackpack-upload-live-demo-stackpack:
     lang: dockerfile
-    handler: ./stscli
     image: jdewinne/stscli:4.0.1-22
     environment:
       fprocess: /usr/bin/run.sh stackpack upload

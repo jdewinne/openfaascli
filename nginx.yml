@@ -1,0 +1,59 @@
+version: 1.0
+provider:
+  name: openfaas
+functions:
+  stackpack-install-nginx-stackpack:
+    lang: dockerfile
+    image: jdewinne/stscli:4.0.1-22
+    environment:
+      fprocess: /usr/bin/run.sh stackpack install nginx -p nginx_instance nginx
+    environment_file:
+      - ./stscli/cli-default.yml
+      - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
+    secrets:
+      - ${STS_PASSWORD:-sts-password}
+  stackpack-upload-nginx-stackpack:
+    lang: dockerfile
+    image: jdewinne/stscli:4.0.1-22
+    environment:
+      fprocess: /usr/bin/run.sh stackpack upload
+    environment_file:
+      - ./stscli/cli-default.yml
+      - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
+      - ./stscli/stackpack-default.yml
+      - ${STACKPACK_OVERRIDE:-./stscli/stackpack-default.yml}
+    secrets:
+      - ${STS_PASSWORD:-sts-password}
+      - ${ARTIFACTORY_PASSWORD:-artifactory-password}
+  nginx-run-topo-check:
+    lang: dockerfile
+    image: jdewinne/stsnginxtopo:1.0.2
+    annotations:
+      topic: cron-function
+      schedule: "*/5 * * * *"
+    environment:
+      sts_nginxtopo_location: /etc/stackstate-agent/topo/nginx.conf
+      sts_nginxtopo_name: nginx
+      sts_nginxtopo_scm: https://github.com/jdewinne/stackstate-nginx-check/blob/main/nginx/tests/data/complex/
+      sts_nginxtopo_download: https://github.com/jdewinne/stackstate-nginx-check/releases/download/v1.0.0/complex.zip
+      write_timeout: 20s
+      read_timeout: 20s
+      exec_timeout: 20s
+    environment_file:
+      - ./stscli/cli-default.yml
+      - ${NGINX_CLI_OVERRIDE:-./stscli/cli-default.yml}
+  nginx-run-metrics-check:
+    lang: dockerfile
+    image: jdewinne/stsnginxmetrics:1.0.1
+    annotations:
+      topic: cron-function
+      schedule: "*/1 * * * *"
+    environment:
+      sts_nginxmetrics_status_url: http://demo.nginx.com/api/
+      sts_nginxmetrics_tag_nginx_name: nginx
+      write_timeout: 25s
+      read_timeout: 25s
+      exec_timeout: 25s
+    environment_file:
+      - ./stscli/cli-default.yml
+      - ${NGINX_CLI_OVERRIDE:-./stscli/cli-default.yml}

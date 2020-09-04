@@ -6,7 +6,7 @@ functions:
     lang: dockerfile
     image: jdewinne/stscli:4.0.1-22
     environment:
-      fprocess: /usr/bin/run.sh stackpack install nginx -p nginx_instance nginx
+      fprocess: /usr/bin/run.sh stackpack install nginx -p nginx_instance "customer\ A"
     environment_file:
       - ./stscli/cli-default.yml
       - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
@@ -33,9 +33,9 @@ functions:
       schedule: "*/5 * * * *"
     environment:
       sts_nginxtopo_location: /etc/stackstate-agent/topo/nginx.conf
-      sts_nginxtopo_name: nginx
+      sts_nginxtopo_name: customer A
       sts_nginxtopo_scm: https://github.com/jdewinne/stackstate-nginx-check/blob/main/nginx/tests/data/demo/
-      sts_nginxtopo_download: https://github.com/jdewinne/stackstate-nginx-check/releases/download/v1.0.0/demo.zip
+      sts_nginxtopo_download: https://github.com/jdewinne/stackstate-nginx-check/releases/download/v1.0.4/demo.zip
       write_timeout: 20s
       read_timeout: 20s
       exec_timeout: 20s
@@ -50,7 +50,7 @@ functions:
       schedule: "*/1 * * * *"
     environment:
       sts_nginxmetrics_status_url: http://demo.nginx.com/api/
-      sts_nginxmetrics_tag_nginx_name: nginx
+      sts_nginxmetrics_tag_nginx_name: customer A
       write_timeout: 25s
       read_timeout: 25s
       exec_timeout: 25s

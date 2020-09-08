@@ -49,12 +49,27 @@
    or when you're working on a stackpack:
 
    `STACKPACK_OVERRIDE="./stscli/stackpack-demo-override.yml" faas-cli deploy -f demo.yml`
+1. Creating a "Component Action" in StackState using OpenFaas:
+    1. Use the function: `cli-graph-import`.
+    1. Change the request body to `JSON`.
+    1. Use the following as an example for the content:
+       ```
+       {"nodes":
+         [{
+             "_type":"ComponentActionDefinition",
+             "bindQuery":"*",
+             "description":"",
+             "name":"Rollback to v5",
+             "script":"Http.post('http://127.0.0.1:8080/async-function/msp-fix-problem')"
+         }]
+       }
+       ```
 1. Items that can be overriden:
     1. `CLI_OVERRIDE`: Override any value from `./stscli/cli-default.yml`.
     1. `DL_OVERRIDE`: Override any value from `./stscli/dl-default.yml`.
     1. `STACKPACK_OVERRIDE`: Override any value from `./stscli/stackpack-default.yml`.
     1. `STS_PASSWORD`: The k8s secret name that will need to be mapped onto `/var/openfaas/secrets/` (default: `sts-password`).
     1. `ARTIFACTORY_PASSWORD`: The k8s secret name that will need to be mapped onto `/var/openfaas/secrets/` (default: `artifactory-password`).
-1. THhe `live-demo` stackpack:
+1. The `live-demo` stackpack:
     1. Deploy via `CLI_OVERRIDE="./stscli/cli-override.yml" STACKPACK_OVERRIDE="./stscli/stackpack-live-demo-override.yml" faas-cli deploy -f live-demo.yml`.
     1. The function `stackpack-install-live-demo-stackpack` requires in the request body `stackpack install live-demo -p receiverUrl <your-stackstate-instance-endpoint>`. With `your-stackstate-instance-endpoint` for example `http://abcdefghij.ngrok.io` when exposing your local instance using ngrok.

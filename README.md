@@ -57,7 +57,7 @@
        {"nodes":
          [{
              "_type":"ComponentActionDefinition",
-             "bindQuery":"*",
+             "bindQuery":"type = \"*\"",
              "description":"",
              "name":"Rollback to v5",
              "script":"Http.post('http://127.0.0.1:8080/async-function/msp-fix-problem')"

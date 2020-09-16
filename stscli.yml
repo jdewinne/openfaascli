@@ -5,7 +5,7 @@ functions:
   cli-delete-all-data:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-22
+    image: jdewinne/stscli:4.1.0-2
     environment:
       fprocess: /usr/bin/run.sh graph delete --all
       write_timeout: 60s
@@ -19,7 +19,7 @@ functions:
   cli-graph-import:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-22
+    image: jdewinne/stscli:4.1.0-2
     environment:
       fprocess: /usr/bin/run.sh graph import
       write_timeout: 60s
@@ -33,7 +33,7 @@ functions:
   cli-list-stackpacks:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-22
+    image: jdewinne/stscli:4.1.0-2
     environment:
       fprocess: /usr/bin/run.sh stackpack list
     environment_file:
@@ -44,7 +44,7 @@ functions:
   cli-list-topics:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-22
+    image: jdewinne/stscli:4.1.0-2
     environment:
       fprocess: /usr/bin/run.sh topic list
     environment_file:
@@ -55,7 +55,7 @@ functions:
   cli-execute-command:
     lang: dockerfile
     handler: ./stscli
-    image: jdewinne/stscli:4.0.1-22
+    image: jdewinne/stscli:4.1.0-2
     environment_file:
       - ./stscli/cli-default.yml
       - ${CLI_OVERRIDE:-./stscli/cli-default.yml}

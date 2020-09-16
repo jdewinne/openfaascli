@@ -1,6 +1,6 @@
-FROM openfaas/classic-watchdog:0.18.1 as watchdog
+FROM openfaas/classic-watchdog:0.18.18 as watchdog
 
-FROM stackstate/stackstate-cli:4.0.1-master-e152779
+FROM stackstate/stackstate-cli:4.1.0-master-ba4b13c
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog

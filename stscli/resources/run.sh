@@ -55,7 +55,7 @@ EOL
 if [ -n "${stackpack_download_link}" ]; then
     echo "stackpack_download_link is defined: $stackpack_download_link"
     http -a $stackpack_download_user:$stackpack_download_password_parsed -d GET $stackpack_download_link -o stackpack.sts
-    python -m src.cli $@ stackpack.sts
+    python -m stackstate_cli.cli $@ stackpack.sts
 
 # if download link is specified (dl_download_link)
 elif [ -n "${dl_download_link}" ]; then
@@ -65,5 +65,5 @@ elif [ -n "${dl_download_link}" ]; then
     PYTHONPATH=/ sh $@
     
 else
-    python -m src.cli $@
+    python -m stackstate_cli.cli $@
 fi

@@ -1,4 +1,4 @@
 environment:
-  stackpack_download_link: https://artifactory.stackstate.io/artifactory/libs-release-local/com/stackstate/stackpack/demo-stackpack/0.4.2/demo-stackpack-0.4.2.sts
+  stackpack_download_link: https://artifactory.stackstate.io/artifactory/libs-release-local/com/stackstate/stackpack/demo-stackpack/0.4.4/demo-stackpack-0.4.4.sts
   stackpack_download_user: 
   stackpack_download_password: artifactory-password

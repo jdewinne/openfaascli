@@ -4,9 +4,18 @@
 
 + Have OpenFaas installed: For example you can use `arkade` to easy install it on your k8s cluster.
   ```
-  arkade install openfaas --set=gateway.upstreamTimeout=295s --set=gateway.readTimeout=300s --set=gateway.writeTimeout=300s
+  arkade install openfaas \
+    --set=gateway.upstreamTimeout=295s \
+    --set=gateway.readTimeout=300s \
+    --set=gateway.writeTimeout=300s \
+    --set=faasnetes.readinessProbe.timeoutSeconds=2 \
+    --set=faasnetes.livenessProbe.timeoutSeconds=2 \
+    --clusterrole
   ```
-+ Notice the increase in timeouts, as many CLI scripts take longer.  
++ Notice the increase in timeouts, as many CLI scripts take longer.
++ Run your functions in your own "sandbox" namespace. See [Openfaas namespaces](https://docs.openfaas.com/reference/namespaces/):
+    + Run `kubectl annotate <your-namespace> openfaas="1"`.
+    + Run `kubectl apply -f installation/networkpolicy-allow-ingress-from-openfaas.yaml --namespace <your-namespace>`
 
 ## Usage
 

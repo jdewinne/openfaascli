@@ -1,0 +1,17 @@
+version: 1.0
+provider:
+  name: openfaas
+functions:
+  stackpack-upload-common-stackpack:
+    lang: dockerfile
+    image: jdewinne/stscli:4.1.0-2
+    environment:
+      fprocess: /usr/bin/run.sh stackpack upload
+    environment_file:
+      - ./stscli/cli-default.yml
+      - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
+      - ./stscli/stackpack-default.yml
+      - ${STACKPACK_OVERRIDE:-./stscli/stackpack-default.yml}
+    secrets:
+      - ${STS_PASSWORD:-sts-password}
+      - ${ARTIFACTORY_PASSWORD:-artifactory-password}

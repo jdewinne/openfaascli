@@ -25,3 +25,16 @@ functions:
     secrets:
       - ${STS_PASSWORD:-sts-password}
       - ${ARTIFACTORY_PASSWORD:-artifactory-password}
+  send-active-users-second:
+    lang: dockerfile
+    image: jdewinne/stscli:4.1.0-2
+    annotations:
+      topic: cron-function
+      schedule: "*/10 * * * *"
+    environment:
+      fprocess: /usr/bin/run.sh metric send active_users.second --baseline -b 300-350 --noise 30 -p 10m
+    environment_file:
+      - ./stscli/cli-default.yml
+      - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
+    secrets:
+      - ${STS_PASSWORD:-sts-password}

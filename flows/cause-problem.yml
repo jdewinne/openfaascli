@@ -1,0 +1,52 @@
+version: 1.0
+provider:
+  name: openfaas
+functions:
+  banking-cause-problem:
+    lang: faas-flow
+    handler: ./cause-problem
+    image: jdewinne/cause-problem:1.0.3
+    labels:
+      faas-flow: 1
+    annotations:
+      faas-flow-desc: "cause multiple problems in stackstate"
+    environment:
+      domain: banking
+    environment_file:
+      - ./flow.yml
+      - ${FLOW_OVERRIDE:-./flow.yml}
+    secrets:
+      - s3-secret-key
+      - s3-access-key
+  telco-cause-problem:
+    lang: faas-flow
+    handler: ./cause-problem
+    image: jdewinne/cause-problem:1.0.3
+    labels:
+      faas-flow: 1
+    annotations:
+      faas-flow-desc: "cause multiple problems in stackstate"
+    environment:
+      domain: telco
+    environment_file:
+      - ./flow.yml
+      - ${FLOW_OVERRIDE:-./flow.yml}
+    secrets:
+      - s3-secret-key
+      - s3-access-key
+  msp-cause-problem:
+    lang: faas-flow
+    handler: ./cause-problem
+    image: jdewinne/cause-problem:1.0.3
+    labels:
+      faas-flow: 1
+    annotations:
+      faas-flow-desc: "cause multiple problems in stackstate"
+    environment:
+      domain: msp
+    environment_file:
+      - ./flow.yml
+      - ${FLOW_OVERRIDE:-./flow.yml}
+    secrets:
+      - s3-secret-key
+      - s3-access-key

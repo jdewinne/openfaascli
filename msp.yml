@@ -2,11 +2,27 @@ version: 1.0
 provider:
   name: openfaas
 functions:
-  msp-cause-problem:
+  msp-cause-problem-part1:
     lang: dockerfile
     image: jdewinne/stscli:4.1.0-2
     environment:
-      fprocess: /usr/bin/run.sh cause_problem.sh
+      fprocess: /usr/bin/run.sh cause_problem_part1.sh
+      write_timeout: 60s
+      read_timeout: 60s
+      exec_timeout: 60s
+    environment_file:
+      - ./stscli/cli-default.yml
+      - ${CLI_OVERRIDE:-./stscli/cli-default.yml}
+      - ./stscli/dl-default.yml
+      - ${DL_OVERRIDE:-./stscli/dl-default.yml}
+    secrets:
+      - ${STS_PASSWORD:-sts-password}
+      - ${ARTIFACTORY_PASSWORD:-artifactory-password}
+  msp-cause-problem-part2:
+    lang: dockerfile
+    image: jdewinne/stscli:4.1.0-2
+    environment:
+      fprocess: /usr/bin/run.sh cause_problem_part2.sh
       write_timeout: 60s
       read_timeout: 60s
       exec_timeout: 60s

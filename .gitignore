@@ -1,3 +1,4 @@
 template
 build
 stscli/*-override.yml
+flows/*-override.yml

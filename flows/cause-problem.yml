@@ -5,7 +5,7 @@ functions:
   banking-cause-problem:
     lang: faas-flow
     handler: ./cause-problem
-    image: jdewinne/cause-problem:1.0.3
+    image: jdewinne/cause-problem:1.0.6
     labels:
       faas-flow: 1
     annotations:
@@ -21,7 +21,7 @@ functions:
   telco-cause-problem:
     lang: faas-flow
     handler: ./cause-problem
-    image: jdewinne/cause-problem:1.0.3
+    image: jdewinne/cause-problem:1.0.6
     labels:
       faas-flow: 1
     annotations:
@@ -37,7 +37,7 @@ functions:
   msp-cause-problem:
     lang: faas-flow
     handler: ./cause-problem
-    image: jdewinne/cause-problem:1.0.3
+    image: jdewinne/cause-problem:1.0.6
     labels:
       faas-flow: 1
     annotations:

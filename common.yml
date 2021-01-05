@@ -4,7 +4,7 @@ provider:
 functions:
   stackpack-upload-common-stackpack:
     lang: dockerfile
-    image: jdewinne/stscli:4.1.0-2
+    image: jdewinne/stscli:4.2.2-1
     environment:
       fprocess: /usr/bin/run.sh stackpack upload
     environment_file:

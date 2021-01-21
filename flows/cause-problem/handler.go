@@ -13,7 +13,7 @@ func Define(flow *faasflow.Workflow, context *faasflow.Context) (err error) {
 	domain := os.Getenv("domain")
 	flow.SyncNode().Apply(domain + "-cause-problem-part1." + namespace).Modify(func(data []byte) ([]byte, error) {
 		time.Sleep(48 * time.Second) // Wait a minute before calling next one.
-		anomaly := "anomaly send --component-name DLL_DB --stream-name=db.mysql.full_table_scans --start-time=-1m --duration=10 --severity=HIGH --name=Increase"
+		anomaly := "anomaly send --component-name database --stream-name=db.mysql.full_table_scans --start-time=-1m --duration=10 --severity=HIGH --name=Increase"
 		return []byte(anomaly), nil
 	}).Apply("cli-execute-command." + namespace).Apply(domain + "-cause-problem-part2." + namespace)
 

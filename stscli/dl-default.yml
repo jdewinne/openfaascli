@@ -1,4 +1,4 @@
 environment:
-  dl_download_link: https://artifactory.stackstate.io/artifactory/libs-release-local/com/stackstate/stackpack/demo-stackpack/0.5.5/demo-stackpack-0.5.5-msp.zip
+  dl_download_link: https://artifactory.stackstate.io/artifactory/libs-release-local/com/stackstate/stackpack/demo-stackpack/0.5.6/demo-stackpack-0.5.6-msp.zip
   dl_download_user: 
   dl_download_password: artifactory-password
